@@ -18,22 +18,23 @@ A minimalist community platform built with Next.js and Shadcn/UI to help entrepr
 ### Checkpoint 2: Authentication & Payments ✅
 **Timeline:** Day 1-2 (4 hours)
 **Goal:** User signup, login, and Stripe payment integration
+**Status:** COMPLETED ✅
 
-### Checkpoint 3: Daily Builds Vault ✅
-**Timeline:** Day 2-3 (3 hours)
-**Goal:** Core value delivery - upload, list, and download builds
+### Checkpoint 3: Community Features ✅
+**Timeline:** Day 2-3 (4 hours)
+**Goal:** Threads, comments, and community interaction - including daily builds as a thread category
+**Note:** Daily builds are posted as threads with external download links, not a separate file upload system
 
-### Checkpoint 4: Community Features ✅
+### Checkpoint 4: Live Sessions & Classroom ✅
 **Timeline:** Day 3-4 (3 hours)
-**Goal:** Threads, comments, and basic community interaction
+**Goal:** Video embeds, live streaming integration, and simple LMS functionality
+**Status:** PENDING
 
-### Checkpoint 5: Live Sessions & Classroom ✅
+### Checkpoint 5: Polish & Launch ✅
 **Timeline:** Day 4-5 (2 hours)
-**Goal:** Video embeds and simple LMS functionality
-
-### Checkpoint 6: Polish & Launch ✅
-**Timeline:** Day 5 (2 hours)
 **Goal:** Final touches, testing, and production deployment
+**Status:** PENDING
+
 
 ---
 
@@ -63,15 +64,15 @@ A minimalist community platform built with Next.js and Shadcn/UI to help entrepr
 ### Checkpoint 2: Authentication & Payments
 
 #### Development Tasks:
-- [ ] Set up Supabase Auth with email/password
-- [ ] Create signup/login forms (no OAuth)
-- [ ] Extend auth.users with profiles table
-- [ ] Add is_active and stripe_customer_id fields
-- [ ] Integrate Stripe checkout with Stripe Links
-- [ ] Create webhook endpoint for payment confirmation
-- [ ] Implement subscription status check middleware
-- [ ] Create simple member/non-member gate
-- [ ] Add founding member flag logic
+- [x] Set up Supabase Auth with email/password
+- [x] Create signup/login forms (no OAuth)
+- [x] Extend auth.users with profiles table
+- [x] Add is_active and stripe_customer_id fields
+- [x] Integrate Stripe checkout with Stripe Links
+- [x] Create webhook endpoint for payment confirmation
+- [x] Implement subscription status check middleware
+- [x] Create simple member/non-member gate
+- [x] Add founding member flag logic
 - [ ] Test payment flow end-to-end
 
 #### Database Schema:
@@ -88,48 +89,11 @@ create table profiles (
 
 ---
 
-### Checkpoint 3: Daily Builds Vault
+
+### Checkpoint 3: Community Features
 
 #### Development Tasks:
-- [ ] Create builds table in Supabase
-- [ ] Build admin upload interface (drag & drop)
-- [ ] Implement file storage with signed URLs
-- [ ] Create public builds list page
-- [ ] Add search by SaaS name
-- [ ] Implement download counter
-- [ ] Add "I built this" tracking
-- [ ] Create download authorization check
-- [ ] Add cost savings calculator display
-- [ ] Implement optimistic UI updates
-
-#### Database Schema:
-```sql
--- Builds table
-create table builds (
-  id uuid primary key default gen_random_uuid(),
-  title text not null,
-  saas_name text not null,
-  monthly_cost integer not null,
-  file_url text not null,
-  download_count integer default 0,
-  created_at timestamp default now()
-);
-
--- Implementations table
-create table implementations (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid references profiles,
-  build_id uuid references builds,
-  created_at timestamp default now()
-);
-```
-
----
-
-### Checkpoint 4: Community Features
-
-#### Development Tasks:
-- [ ] Create threads table with 4 hardcoded categories
+- [ ] Create threads table with 4 hardcoded categories (including 'daily_builds')
 - [ ] Build thread creation form (markdown only)
 - [ ] Implement thread listing (recent activity sort)
 - [ ] Create comments system
@@ -138,6 +102,8 @@ create table implementations (
 - [ ] Create category filtering
 - [ ] Build member-only access control
 - [ ] Add thread activity tracking
+- [ ] Create daily builds thread template with download links
+- [ ] Add "I built this" reactions to threads
 - [ ] Test community interactions
 
 #### Database Schema:
@@ -145,7 +111,7 @@ create table implementations (
 -- Threads table
 create table threads (
   id uuid primary key default gen_random_uuid(),
-  category text check (category in ('daily_builds', 'show_build', 'target_list', 'help_debug')),
+  category text check (category in ('daily_builds', 'show_your_build', 'target_list', 'help_debug')),
   author_id uuid references profiles,
   title text not null,
   content text not null,
@@ -165,7 +131,7 @@ create table comments (
 
 ---
 
-### Checkpoint 5: Live Sessions & Classroom
+### Checkpoint 4: Live Sessions & Classroom
 
 #### Development Tasks:
 - [ ] Create live sessions page with embed
@@ -181,7 +147,7 @@ create table comments (
 
 ---
 
-### Checkpoint 6: Polish & Launch
+### Checkpoint 5: Polish & Launch
 
 #### Development Tasks:
 - [ ] Implement high-contrast brutalist design
@@ -318,10 +284,11 @@ create table comments (
 ## Implementation Timeline
 
 ### Week 1: Build & Launch
-- Days 1-2: Foundation + Auth
-- Days 3-4: Core Features
-- Day 5: Polish + Deploy
-- Days 6-7: First builds + marketing
+- Days 1-2: Foundation + Auth + Payments
+- Days 2-3: Community Features (threads, comments)
+- Days 3-4: Live Sessions + Classroom
+- Days 4-5: Polish + Deploy
+- Days 6-7: First daily build posts + marketing
 
 ### Week 2-4: Growth Phase
 - Daily builds at 7 AM
@@ -368,9 +335,9 @@ create table comments (
 ## Success Criteria
 
 ### Launch Day
-- [ ] Platform accepts payments
-- [ ] First build uploaded
-- [ ] Members can access content
+- [x] Platform accepts payments
+- [ ] First daily build posted in threads
+- [ ] Members can access community
 - [ ] No critical bugs
 
 ### Day 30
