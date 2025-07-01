@@ -20,7 +20,7 @@ export default function Home() {
           </p>
         </div>
         <a
-          href="/signup"
+          href="/auth/signup"
           className="inline-block border-4 border-black bg-black text-white px-8 py-4 text-xl font-bold hover:bg-white hover:text-black"
         >
           JOIN FOR $97/MONTH → SAVE $322/MONTH INSTANTLY

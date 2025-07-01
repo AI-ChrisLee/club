@@ -27,7 +27,7 @@ export default function RootLayout({
                   <Link href="/threads" className="hover:underline">THREADS</Link>
                   <Link href="/live" className="hover:underline">LIVE</Link>
                   <Link href="/classroom" className="hover:underline">LEARN</Link>
-                  <Link href="/login" className="border-2 border-black px-4 py-1 hover:bg-black hover:text-white">
+                  <Link href="/auth/login" className="border-2 border-black px-4 py-1 hover:bg-black hover:text-white">
                     MEMBER LOGIN
                   </Link>
                 </div>
