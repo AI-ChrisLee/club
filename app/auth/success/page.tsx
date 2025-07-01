@@ -1,12 +1,14 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
-export default function SuccessPage({
+export default async function SuccessPage({
   searchParams,
 }: {
-  searchParams: { session_id?: string }
+  searchParams: Promise<{ session_id?: string }>
 }) {
-  if (!searchParams.session_id) {
+  const params = await searchParams
+  
+  if (!params.session_id) {
     redirect('/auth/payment')
   }
 
